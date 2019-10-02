@@ -1,0 +1,15 @@
+#include<stdio.h>
+int main(){
+	printf("enter no of processes");
+	int n,sum;
+	sum=0;
+	scanf("%d",&n);
+	int arr[n];
+	for(int x=0;x<n;x++){
+		printf("enter burst time of process %d",x);
+		scanf("%d",&arr[x]);
+		printf("waiting time for process %d is %d\n",x+1,sum);	
+		sum+=arr[x];	
+	}	
+	return 0;
+}
