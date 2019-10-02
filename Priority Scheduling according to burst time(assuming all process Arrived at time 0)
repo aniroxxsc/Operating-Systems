@@ -1,0 +1,41 @@
+#include<stdio.h>
+int q;
+
+
+
+int main(){
+	int n;
+	printf("enter number of process");
+	scanf("%d",&n);
+	int P[n];
+	int burst[n];
+	for(int i=0;i<n;i++){
+		P[i]=i;	
+	}
+	for(int j=0;j<n;j++){
+		printf("enter the burst time of progeam number %d",j);
+		scanf("%d",&burst[j]);
+	}
+	for(int i=0;i<n;i++){
+		for(int j=0;j<n;j++){
+			if (burst[j]>burst[j+1]){
+				int burst_temp,program_temp;
+				burst_temp=burst[j];
+				burst[j]=burst[j+1];
+				burst[j+1]=burst_temp;
+				program_temp=P[j];
+				P[j]=P[j+1];
+				P[j+1]=program_temp;
+			}			
+				
+		}	
+
+	}
+	for(int k=0;k<n;k++){
+		printf(" programs according to burst time ");
+		printf(" program no %d 		and burst time %d	\n",P[k],burst[k]);
+	}
+	
+		
+	return 0;
+}
