@@ -1,0 +1,40 @@
+#include<stdio.h>
+int main(){
+int tq,n;
+printf("enter the number of program");
+scanf("%d",&n);
+int program[n];
+int max,no,sum,time;
+sum=0;
+max=0;
+time=0;
+int burst_time[n];
+for(int i=0;i<n;i++){
+	printf("enter the burst time of program number %d \n",i);
+	scanf("%d",&burst_time[i]);
+}
+printf("enter the time quantum \n");
+scanf("%d",&tq);
+for(int l=0;l<n;l++){
+	sum+=burst_time[l];
+}
+
+
+
+while(sum>0){
+	for(int k=0;k<n;k++){
+		if(burst_time[k]>tq){
+			burst_time[k]=burst_time[k]-tq;
+			sum=sum-tq;
+			time=time+tq;	
+		}
+		if(burst_time[k]<=tq && burst_time[k]!=0){
+			burst_time[k]=0;
+			time=time+burst_time[k];
+			sum=sum-burst_time[k];
+			printf("process %d has been completed at time %d\n",k,time);
+		}
+	}
+}
+return 0;
+}
