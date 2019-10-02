@@ -1,0 +1,51 @@
+#include<stdio.h>
+int main(){
+int n;
+printf("enter the number of program");
+scanf("%d",&n);
+int burst_time[n],arrival_time[n],priority[n],time;
+int tempo[n],max,temp,no,count;
+count=0;
+max=0;
+time=0;
+no=-1;
+for(int i=0;i<n;i++){
+	printf("enter burst time, arrival time and priority respectively of program number %d",i);
+	scanf("%d", &burst_time[i]);
+	scanf("%d", &arrival_time[i]);
+	scanf("%d", &priority[i]);
+}
+while(count!=n){
+	for(int j=0;j<n;j++){
+		if(arrival_time[j]<=time && burst_time[j]!=0){
+			tempo[j]=1;
+			
+		}
+		else{
+			tempo[j]=0;
+		}
+	}
+	for(int k=0;k<n;k++){
+		if(tempo[k]==1){
+			temp=priority[k];
+			if(temp>max){
+				max=temp;
+				no=k;
+			}	
+			temp=0;
+		}
+	}
+	if(no!=-1){
+		count++;
+		time=time+burst_time[no];
+		burst_time[no]=0;
+		printf("program number %d completed at time %d \n",no,time);
+		max=0;
+	}
+	else{
+		time++;	
+	}
+	no=-1;
+}
+return 0;
+}
